@@ -1,27 +1,28 @@
 package com.random.sumcalc.service;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.random.sumcalc.sources.DBSource;
 import com.random.sumcalc.sources.GetRandomNumber;
 import com.random.sumcalc.sources.JavaSource;
 import com.random.sumcalc.sources.WSSource;
 
-@Configuration
+@Component
 public class SourceType {
-		
-	@Bean
-	@Scope("request")
+
+	@Autowired
+	private ApplicationContext context;
+	
 	public GetRandomNumber someService(String type) {
 	    switch (type) {
 	    case "DB":
-	        return new DBSource();
+	        return context.getBean(DBSource.class);
 	    case "JAVA":
-	        return new JavaSource();
+	    	return context.getBean(JavaSource.class);
 	    case "HTTP":
-	        return new WSSource();
+	        return context.getBean(WSSource.class);
 	    default:
 	        return new JavaSource();
 	    }

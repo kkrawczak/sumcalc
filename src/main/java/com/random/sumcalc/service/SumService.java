@@ -25,6 +25,7 @@ public class SumService {
 
 	public Integer calculate() {
 		Integer result =  getRandomNumber.stream().mapToInt(i -> i.getRandom()).sum();
+		getRandomNumber.clear();
 		return result;
 	}
 }
