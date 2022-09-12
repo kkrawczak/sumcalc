@@ -8,6 +8,7 @@ class SumcalcApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.print("Context loaded");
 	}
 
 }
